@@ -5,9 +5,9 @@ Welcome to our project repository!
 This README file only contains some essential informations about our project.
 If you're after specific informations about the database, back-end or front-end of the application, please read the README files in the appropiate folders.
 
-+ [About the database](../blob/master/database/README.md)
-+ [About the back-end](../blob/master/back-end/README.md)
-+ [About the front-end](../blob/master/front-end/README.md)
++ [About the database](../master/Database/README.md)
++ [About the back-end](../master/back-end/README.md)
++ [About the front-end](../master/front-end/README.md)
 
 ## What is FairShare?
 
