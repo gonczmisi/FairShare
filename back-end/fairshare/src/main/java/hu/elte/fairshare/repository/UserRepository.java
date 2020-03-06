@@ -10,13 +10,13 @@ import org.springframework.data.repository.CrudRepository;
  * 
  * @author sajtizsolt
  */
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends CrudRepository<User, Long> {
     
     /**
      * The findByUserName method is searching for the user by the given
      * username.
      * 
-     * @param username The username of the user being searched.
+     * @param userName The username of the user being searched.
      * @return User The user with the given username.
      */
     Optional<User> findByUsername(String userName);
