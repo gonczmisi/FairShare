@@ -1,5 +1,6 @@
 package hu.elte.fairshare.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.elte.fairshare.utils.UserRole;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -113,5 +114,6 @@ public class User {
         name = "users_receipts",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "receipt_id"))
+    @JsonIgnore
     private Set<Receipt> receipts;
 }

@@ -1,5 +1,6 @@
 package hu.elte.fairshare.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;
@@ -65,5 +66,6 @@ public class Receipt {
      * The set of users attached to the receipt.
      */
     @ManyToMany(mappedBy = "receipts")
+    @JsonIgnore
     private Set<User> users;
 }
