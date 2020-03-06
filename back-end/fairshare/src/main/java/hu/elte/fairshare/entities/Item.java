@@ -1,11 +1,16 @@
 package hu.elte.fairshare.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -75,4 +80,15 @@ public class Item {
         name = "price",
         nullable = false)
     private Integer price;
+    
+    /**
+     * The set of receipts attached to the item.
+     */
+    @ManyToMany
+    @JoinTable(
+        name = "items_receipts",
+        joinColumns = @JoinColumn(name = "item_id"),
+        inverseJoinColumns = @JoinColumn(name = "receipt_id"))
+    @JsonIgnore
+    private Set<Receipt> receipts;
 }

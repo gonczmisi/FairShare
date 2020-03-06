@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -68,4 +69,11 @@ public class Receipt {
     @ManyToMany(mappedBy = "receipts")
     @JsonIgnore
     private Set<User> users;
+    
+    /**
+     * The set of users attached to the receipt.
+     */
+    @ManyToMany(mappedBy = "receipts")
+    @JsonIgnore
+    private Set<Item> items;
 }
