@@ -1,6 +1,7 @@
 package hu.elte.fairshare.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import hu.elte.fairshare.utils.Currency;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;
@@ -80,6 +81,15 @@ public class Item {
         name = "price",
         nullable = false)
     private Integer price;
+    
+    /**
+     * The active currency of the item.
+     */
+    @Column(
+        name = "currency",
+        nullable = false,
+        length = 3)
+    private Currency currency;
     
     /**
      * The set of receipts attached to the item.
