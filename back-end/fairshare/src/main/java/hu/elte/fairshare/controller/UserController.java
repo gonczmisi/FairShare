@@ -45,7 +45,7 @@ public class UserController {
      * @return The user with the given id.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> get(@PathVariable Integer id) {
+    public ResponseEntity<User> get(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -100,7 +100,7 @@ public class UserController {
      * @return The deleted user instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);

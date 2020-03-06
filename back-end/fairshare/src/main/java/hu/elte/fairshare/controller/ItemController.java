@@ -1,7 +1,7 @@
 package hu.elte.fairshare.controller;
 
-import hu.elte.fairshare.entities.User;
-import hu.elte.fairshare.repository.UserRepository;
+import hu.elte.fairshare.entities.Item;
+import hu.elte.fairshare.repository.ItemRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,95 +15,81 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The UserController class implements a REST controller which can handle
+ * The ItemController class implements a REST controller which can handle
  * get, post, put, delete requests.
  * 
  * @author sajtizsolt
  */
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/items")
+public class ItemController {
     
     /**
      * The repository instance of the controller.
      */
     @Autowired
-    private UserRepository userRepository;
+    private ItemRepository itemRepository;
     
     /**
      * The getAll method returns all of the data from the table.
-     * @return All data from the users table.
+     * @return All data from the items table.
      */
     @GetMapping("")
-    public ResponseEntity<Iterable<User>> getAll() {
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<Iterable<Item>> getAll() {
+        return ResponseEntity.ok(itemRepository.findAll());
     }
     
     /**
-     * The get method returns the user with the given id.
-     * @param id The id of the user.
-     * @return The user with the given id.
+     * The get method returns the item with the given id.
+     * @param id The id of the item.
+     * @return The item with the given id.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> get(@PathVariable Integer id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
-    
-    /**
-     * The get method returns the user with the given username.
-     * @param userName The username of the user.
-     * @return The user with the given username.
-     */
-    @GetMapping("/{username}")
-    public ResponseEntity<User> get(@PathVariable String userName) {
-        Optional<User> user = userRepository.findByUsername(userName);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
+    public ResponseEntity<Item> get(@PathVariable Long id) {
+        Optional<Item> item = itemRepository.findById(id);
+        if (item.isPresent()) {
+            return ResponseEntity.ok(item.get());
         }
         return ResponseEntity.notFound().build();
     }
     
     /**
      * The post method puts a new record into the table.
-     * @param user The user we want to add to the table.
-     * @return The new user instance.
+     * @param item The item we want to add to the table.
+     * @return The new item instance.
      */
     @PostMapping("")
-    public ResponseEntity<User> post(@RequestBody User user) {
-        User newUser = userRepository.save(user);
-        return ResponseEntity.ok(newUser);
+    public ResponseEntity<Item> post(@RequestBody Item item) {
+        Item newItem = itemRepository.save(item);
+        return ResponseEntity.ok(newItem);
     }
     
     /**
-     * The put method sets the id of the given user to the given id.
-     * @param user The user we want to update.
-     * @param userName The new username for the user.
-     * @return The updated user instance.
+     * The put method sets the id of the given item to the given id.
+     * @param item The item we want to update.
+     * @param id The new id for the item.
+     * @return The updated item instance.
      */
-    @PutMapping("/{username}")
-    public ResponseEntity<User> put(@RequestBody User user, @PathVariable String userName) {
-        Optional<User> optionalUser = userRepository.findByUsername(userName);
-        if (optionalUser.isPresent()) {
-            user.setUsername(userName);
-            return ResponseEntity.ok(userRepository.save(user));
+    @PutMapping("/{id}")
+    public ResponseEntity<Item> put(@RequestBody Item item, @PathVariable Long id) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        if (optionalItem.isPresent()) {
+            item.setId(id);
+            return ResponseEntity.ok(itemRepository.save(item));
         }
         return ResponseEntity.notFound().build();
     }
     
     /**
-     * The delete method deletes a user from the table given by id.
-     * @param id The id of the user.
-     * @return The deleted user instance.
+     * The delete method deletes an item from the table given by id.
+     * @param id The id of the item.
+     * @return The deleted item instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            userRepository.deleteById(id);
+    public ResponseEntity delete(@PathVariable Long id) {
+        Optional<Item> optionalItem = itemRepository.findById(id);
+        if (optionalItem.isPresent()) {
+            itemRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

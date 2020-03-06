@@ -1,7 +1,8 @@
 package hu.elte.fairshare.controller;
 
-import hu.elte.fairshare.entities.User;
-import hu.elte.fairshare.repository.UserRepository;
+import hu.elte.fairshare.entities.Item;
+import hu.elte.fairshare.entities.Receipt;
+import hu.elte.fairshare.repository.ReceiptRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,95 +16,81 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The UserController class implements a REST controller which can handle
+ * The ReceiptController class implements a REST controller which can handle
  * get, post, put, delete requests.
  * 
  * @author sajtizsolt
  */
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/receipts")
+public class ReceiptController {
     
     /**
      * The repository instance of the controller.
      */
     @Autowired
-    private UserRepository userRepository;
+    private ReceiptRepository receiptRepository;
     
     /**
      * The getAll method returns all of the data from the table.
-     * @return All data from the users table.
+     * @return All data from the receipts table.
      */
     @GetMapping("")
-    public ResponseEntity<Iterable<User>> getAll() {
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<Iterable<Receipt>> getAll() {
+        return ResponseEntity.ok(receiptRepository.findAll());
     }
     
     /**
-     * The get method returns the user with the given id.
-     * @param id The id of the user.
-     * @return The user with the given id.
+     * The get method returns the receipt with the given id.
+     * @param id The id of the receipt.
+     * @return The receipt with the given id.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> get(@PathVariable Integer id) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
-    
-    /**
-     * The get method returns the user with the given username.
-     * @param userName The username of the user.
-     * @return The user with the given username.
-     */
-    @GetMapping("/{username}")
-    public ResponseEntity<User> get(@PathVariable String userName) {
-        Optional<User> user = userRepository.findByUsername(userName);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
+    public ResponseEntity<Receipt> get(@PathVariable Long id) {
+        Optional<Receipt> receipt = receiptRepository.findById(id);
+        if (receipt.isPresent()) {
+            return ResponseEntity.ok(receipt.get());
         }
         return ResponseEntity.notFound().build();
     }
     
     /**
      * The post method puts a new record into the table.
-     * @param user The user we want to add to the table.
-     * @return The new user instance.
+     * @param receipt The receipt we want to add to the table.
+     * @return The new receipt instance.
      */
     @PostMapping("")
-    public ResponseEntity<User> post(@RequestBody User user) {
-        User newUser = userRepository.save(user);
-        return ResponseEntity.ok(newUser);
+    public ResponseEntity<Receipt> post(@RequestBody Receipt receipt) {
+        Receipt newReceipt = receiptRepository.save(receipt);
+        return ResponseEntity.ok(newReceipt);
     }
     
     /**
-     * The put method sets the id of the given user to the given id.
-     * @param user The user we want to update.
-     * @param userName The new username for the user.
-     * @return The updated user instance.
+     * The put method sets the id of the given receipt to the given id.
+     * @param receipt The receipt we want to update.
+     * @param id The new id for the receipt.
+     * @return The updated receipt instance.
      */
-    @PutMapping("/{username}")
-    public ResponseEntity<User> put(@RequestBody User user, @PathVariable String userName) {
-        Optional<User> optionalUser = userRepository.findByUsername(userName);
-        if (optionalUser.isPresent()) {
-            user.setUsername(userName);
-            return ResponseEntity.ok(userRepository.save(user));
+    @PutMapping("/{id}")
+    public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, @PathVariable Long id) {
+        Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
+        if (optionalReceipt.isPresent()) {
+            receipt.setId(id);
+            return ResponseEntity.ok(receiptRepository.save(receipt));
         }
         return ResponseEntity.notFound().build();
     }
     
     /**
-     * The delete method deletes a user from the table given by id.
-     * @param id The id of the user.
-     * @return The deleted user instance.
+     * The delete method deletes a receipt from the table given by id.
+     * @param id The id of the receipt.
+     * @return The deleted receipt instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Integer id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            userRepository.deleteById(id);
+    public ResponseEntity delete(@PathVariable Long id) {
+        Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
+        if (optionalReceipt.isPresent()) {
+            receiptRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
