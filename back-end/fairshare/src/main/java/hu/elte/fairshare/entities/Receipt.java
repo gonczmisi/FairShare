@@ -23,7 +23,9 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Data
 @Entity
-@Table(name = "Receipt", schema = "public")
+@Table(
+    name = "Receipt",
+    schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -33,21 +35,29 @@ public class Receipt {
      * The unique id of the receipt.
      */
     @Id
-    @Column(name = "id", updatable = false, unique = true)
+    @Column(
+        name = "id",
+        updatable = false,
+        unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     /**
      * The time the record was created.
      */
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(
+        name = "created_at",
+        nullable = false,
+        updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     
     /**
      * The time the record was last updated.
      */
-    @Column(name = "updated_at", nullable = false)
+    @Column(
+        name = "updated_at",
+        nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     

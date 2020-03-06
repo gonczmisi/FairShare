@@ -21,7 +21,9 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Data
 @Entity
-@Table(name = "Item", schema = "public")
+@Table(
+    name = "Item",
+    schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -31,33 +33,46 @@ public class Item {
      * The unique id of the receipt.
      */
     @Id
-    @Column(name = "id", updatable = false, unique = true)
+    @Column(
+        name = "id",
+        updatable = false,
+        unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     
     /**
      * The time the record was created.
      */
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(
+        name = "created_at",
+        nullable = false,
+        updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     
     /**
      * The time the record was last updated.
      */
-    @Column(name = "updated_at", nullable = false)
+    @Column(
+        name = "updated_at",
+        nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
     /**
      * The name of the item.
      */
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(
+        name = "name",
+        nullable = false,
+        length = 50)
     private String name;
     
     /**
      * The price of the item.
      */
-    @Column(name = "price", nullable = false)
+    @Column(
+        name = "price",
+        nullable = false)
     private Integer price;
 }

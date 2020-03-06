@@ -28,7 +28,9 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Data
 @Entity
-@Table(name = "User", schema = "public")
+@Table(
+    name = "User",
+    schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -41,8 +43,7 @@ public class User {
     @Column(
         name = "id",
         updatable = false,
-        unique = true
-    )
+        unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -52,8 +53,7 @@ public class User {
     @Column(
         name = "created_at",
         nullable = false,
-        updatable = false
-    )
+        updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     
@@ -62,8 +62,7 @@ public class User {
      */
     @Column(
         name = "updated_at",
-        nullable = false
-    )
+        nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
     
@@ -73,8 +72,7 @@ public class User {
     @Column(
         name = "username",
         nullable = false,
-        length = 50
-    )
+        length = 50)
     private String username;
     
     /**
@@ -83,8 +81,7 @@ public class User {
     @Column(
         name = "password",
         nullable = false,
-        length = 256
-    )  
+        length = 256)  
     private String password;
     
     /**
@@ -95,8 +92,7 @@ public class User {
         name = "email_address",
         nullable = false,
         length = 50,
-        unique = true
-    )
+        unique = true)
     private String emailAddress;
     
     /**
@@ -105,8 +101,7 @@ public class User {
     @Column(
         name = "user_role",
         nullable = false,
-        length = 15
-    )
+        length = 15)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
     
@@ -117,7 +112,6 @@ public class User {
     @JoinTable(
         name = "users_receipts",
         joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "receipt_id")
-    )
+        inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     private Set<Receipt> receipts;
 }
