@@ -64,6 +64,15 @@ public class Receipt {
     private LocalDateTime updatedAt;
     
     /**
+     * 
+     */
+    @Column(
+        name = "name",
+        nullable = false,
+        length = 50)
+    private String name;
+    
+    /**
      * The set of users attached to the receipt.
      */
     @ManyToMany(mappedBy = "receipts")
@@ -76,4 +85,12 @@ public class Receipt {
     @ManyToMany(mappedBy = "receipts")
     @JsonIgnore
     private Set<Item> items;
+    
+    /**
+     * The setter for name field.
+     * @param name The new name of the receipt.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }

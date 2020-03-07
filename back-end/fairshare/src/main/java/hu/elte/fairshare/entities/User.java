@@ -116,4 +116,12 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     @JsonIgnore
     private Set<Receipt> receipts;
+    
+    /**
+     * The setter for username field.
+     * @param username The new username of the user.
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

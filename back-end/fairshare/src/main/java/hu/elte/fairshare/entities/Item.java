@@ -104,4 +104,12 @@ public class Item {
         inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     @JsonIgnore
     private Set<Receipt> receipts;
+    
+    /**
+     * The setter for name field.
+     * @param name The new name of the item.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }

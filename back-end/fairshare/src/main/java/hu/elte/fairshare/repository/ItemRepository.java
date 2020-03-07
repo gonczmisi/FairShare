@@ -1,6 +1,7 @@
 package hu.elte.fairshare.repository;
 
 import hu.elte.fairshare.entities.Item;
+import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -11,4 +12,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ItemRepository extends CrudRepository<Item, Long> {
     
+    Optional<Item> findByName(String name);
 }

@@ -1,6 +1,5 @@
 package hu.elte.fairshare.controller;
 
-import hu.elte.fairshare.entities.Item;
 import hu.elte.fairshare.entities.Receipt;
 import hu.elte.fairshare.repository.ReceiptRepository;
 import java.util.Optional;
@@ -68,14 +67,15 @@ public class ReceiptController {
     /**
      * The put method sets the id of the given receipt to the given id.
      * @param receipt The receipt we want to update.
-     * @param id The new id for the receipt.
+     * @param id The id of the receipt.
+     * @param name The new name of the receipt.
      * @return The updated receipt instance.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, @PathVariable Long id) {
+    public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, @PathVariable Long id, @PathVariable String name) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {
-            receipt.setId(id);
+            receipt.setName(name);
             return ResponseEntity.ok(receiptRepository.save(receipt));
         }
         return ResponseEntity.notFound().build();

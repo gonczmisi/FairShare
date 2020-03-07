@@ -67,14 +67,15 @@ public class ItemController {
     /**
      * The put method sets the id of the given item to the given id.
      * @param item The item we want to update.
-     * @param id The new id for the item.
+     * @param id The id of the item.
+     * @param name The new name of the item.
      * @return The updated item instance.
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<Item> put(@RequestBody Item item, @PathVariable Long id) {
+    @PutMapping("/{name}")
+    public ResponseEntity<Item> put(@RequestBody Item item, @PathVariable Long id, @PathVariable String name) {
         Optional<Item> optionalItem = itemRepository.findById(id);
         if (optionalItem.isPresent()) {
-            item.setId(id);
+            item.setName(name);
             return ResponseEntity.ok(itemRepository.save(item));
         }
         return ResponseEntity.notFound().build();
