@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -86,10 +88,11 @@ public class Item {
      * The active currency of the item.
      */
     @Column(
-        name = "currency",
+        name = "currencyType",
         nullable = false,
-        length = 3)
-    private Currency currency;
+        length = 5)
+    @Enumerated(EnumType.STRING)
+    private Currency currencyType;
     
     /**
      * The set of receipts attached to the item.
