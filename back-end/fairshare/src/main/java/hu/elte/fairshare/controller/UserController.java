@@ -2,6 +2,8 @@ package hu.elte.fairshare.controller;
 
 import hu.elte.fairshare.entities.User;
 import hu.elte.fairshare.repository.UserRepository;
+import hu.elte.fairshare.utils.UserRole;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +46,7 @@ public class UserController {
      * @param id The id of the user.
      * @return The user with the given id.
      */
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<User> get(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
@@ -58,11 +60,39 @@ public class UserController {
      * @param userName The username of the user.
      * @return The user with the given username.
      */
-    @GetMapping("/{username}")
-    public ResponseEntity<User> get(@PathVariable String userName) {
-        Optional<User> user = userRepository.findByUsername(userName);
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User> get(@PathVariable String username) {
+        Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+        /**
+     * The get method returns the user with the given username.
+     * @param userName The username of the user.
+     * @return The user with the given username.
+     */
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> getByEmail(@PathVariable String email) {
+        Optional<User> user = userRepository.findByEmailAddress(email);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    /**
+     * The get method returns the users with the given role.
+     * @param role  The role of the users.
+     * @return The users with the given role.
+     */
+    @GetMapping("/role/{role}")
+    public ResponseEntity<List<User>> getByRole(@PathVariable UserRole role) {
+        Optional<List<User>> users = userRepository.findByUserRole(role);
+        if (users.isPresent()) {
+            return ResponseEntity.ok(users.get());
         }
         return ResponseEntity.notFound().build();
     }
@@ -79,16 +109,51 @@ public class UserController {
     }
     
     /**
-     * The put method sets the id of the given user to the given id.
+     * The put method sets the username of the given user
+     * to the given username.
      * @param user The user we want to update.
      * @param userName The new username for the user.
      * @return The updated user instance.
      */
-    @PutMapping("/{username}")
+    @PutMapping("/username/{username}")
     public ResponseEntity<User> put(@RequestBody User user, @PathVariable String userName) {
         Optional<User> optionalUser = userRepository.findByUsername(userName);
         if (optionalUser.isPresent()) {
             user.setUsername(userName);
+            return ResponseEntity.ok(userRepository.save(user));
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    /**
+     * The put method sets the email address of the given user
+     * to the given email address.
+     * @param user The user we want to update.
+     * @param email  The new email address for the user.
+     * @return The updated user instance.
+     */
+    @PutMapping("/email/{email}")
+    public ResponseEntity<User> putEmail(@RequestBody User user, @PathVariable String email) {
+        Optional<User> optionalUser = userRepository.findByEmailAddress(email);
+        if (optionalUser.isPresent()) {
+            user.setEmailAddress(email);
+            return ResponseEntity.ok(userRepository.save(user));
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
+    /**
+     * The put method sets the role of the given user
+     * to the given role.
+     * @param user The user we want to update.
+     * @param role  The new role for the user.
+     * @return The updated user instance.
+     */
+    @PutMapping("/role/{role}")
+    public ResponseEntity<User> putRole(@RequestBody User user, @PathVariable UserRole role) {
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+        if (optionalUser.isPresent()) {
+            user.setUserRole(role);
             return ResponseEntity.ok(userRepository.save(user));
         }
         return ResponseEntity.notFound().build();
