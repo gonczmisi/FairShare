@@ -2,6 +2,7 @@ package hu.elte.fairshare.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,9 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/users/**").permitAll()
-                    .antMatchers("/items/**").hasRole("USER")
-                    .antMatchers("/receipts/**").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.POST, "/register").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .headers()
