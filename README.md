@@ -24,3 +24,12 @@ With FairShare, you can
 + add your friends to the receipts (and also to items within them);
 + keep tracking your expenses and debits;
 + relax, and not to worry about getting your money back.
+
+## About branching
+
+The project uses two separate branches:
+
++ __dev__: development branch
++ __master__: release branch (always stable)
+
+We merge to the master branch often, with pull requests to make sure everybody approves the release.

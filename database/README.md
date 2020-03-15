@@ -5,6 +5,7 @@ This document contains information about our database.
 ## About
 
 Our PostgreSQL database is running on a Linux virtual machine in Microsoft Azure.
+Because we love our planet and we don't want to waste energy, the VM is turned off most of the time, so if you want to try it out, you should run an own PostgreSQL server (or you should be lucky to find our VM active).
 
 ## Connecting
 
