@@ -8,13 +8,11 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 /**
- *
+ * This class implements the basic configuration of the application's security.
  * @author mgoncz
  */
 @Configuration
@@ -25,6 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
     
+    /**
+     * This method is the basic HTTP configuration.
+     * @param http
+     * @throws Exception 
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -52,6 +55,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                     .and()
                 .csrf().disable()
+                /**
+                 * The "/register" url will be accessible
+                 * without any authentication for HTTP POST requests.
+                 * To reach any url (except "/register") users will 
+                 * need to authenticate.
+                 */
                 .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/register").permitAll()
                     .anyRequest().authenticated()
@@ -65,40 +74,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS);;
     }
-
-    /* Working in memory authentication
-    @Override
-    @Bean
-    public UserDetailsService userDetailsService() {
-        User.UserBuilder users = User.withDefaultPasswordEncoder();
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(users.username("user").password("password").roles("USER").build());
-        manager.createUser(users.username("admin").password("password").roles("ADMIN", "USER").build());
-        return manager;
-    }
-    */
-    
      
+    /**
+     * This method will handle and configure the authentication.
+     * @param auth 
+     * @throws Exception
+     */
     @Autowired
     protected void configureAuthentication(AuthenticationManagerBuilder auth) throws Exception {
       auth
           .userDetailsService(userDetailsService)
           .passwordEncoder(passwordEncoder());
-      System.out.println(passwordEncoder().encode("password"));
-    }
-    @Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-      auth
-          .userDetailsService(userDetailsService)
-          .passwordEncoder(passwordEncoder());
-      System.out.println(passwordEncoder().encode("password"));
     }
 
+    /**
+     * This is a getter method for the encoder.
+     * @return the BCryptPasswordEncoder object
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     
+    /**
+     * This is a getter method for the
+     * Basic Authentication Entry Point.
+     * @return : the BasicEntryPoint object
+     */
     @Bean
     public BasicEntryPoint getBasicAuthEntryPoint(){
         return new BasicEntryPoint();

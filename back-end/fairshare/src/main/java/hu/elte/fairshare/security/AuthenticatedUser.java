@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
 /**
- * 
+ * This class implements the authenticated user, 
+ * who is currently authenticated to the application.
  * @author mgoncz
  */
 @RequestScope

@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
+ * This class implements the UserDetailsService, what is 
+ * responsible for validate credentials from the database
+ * what the user give during the authentication.
  * @author mgoncz
  */
 @Service
@@ -25,10 +27,17 @@ public class BasicUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    
     @Autowired 
     private AuthenticatedUser authenticatedUser;
-    
+
+    /**
+     * This method will ckeck if there is a user in the databse
+     * with the given username.
+     * @param username : the given username
+     * @return : the user with the given username
+     * @throws UsernameNotFoundException : if there is not a user in the
+     * database with the given username
+     */
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
