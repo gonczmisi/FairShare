@@ -124,4 +124,13 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+    public void setEmailAddress(String email) {
+        this.emailAddress = email;
+    }
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+	public Long getId() {
+		return null;
+	}
 }
