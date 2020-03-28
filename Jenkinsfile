@@ -3,6 +3,6 @@ node {
         git 'https://github.com/gonczmisi/FairShare'
     }
     stage('Build') {
-        sh 'mvn package -f back-end/fairshare'
+        sh 'mvn package -f back-end/fairshare/pom.xml'
     }
 }
