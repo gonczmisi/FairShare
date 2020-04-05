@@ -1,6 +1,6 @@
 node {
     stage('SCM checkout') {
-        git 'https://github.com/gonczmisi/FairShare'
+        git branch: 'jenkins', url: 'https://github.com/gonczmisi/FairShare'
     }
     stage('Build') {
         sh 'mvn clean package -DskipTests --batch-mode --file back-end/fairshare/pom.xml'
