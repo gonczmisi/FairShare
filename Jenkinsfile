@@ -9,7 +9,6 @@ node {
         sh 'mvn test --file back-end/fairshare/pom.xml'
     }
     stage('Run') {
-        sh 'kill -9 $(lsof -t -i:8100)'
         sh 'java -jar /var/lib/jenkins/workspace/fairshare-pipeline/back-end/fairshare/target/fairshare-0.0.1-SNAPSHOT.jar'
     }
 }
