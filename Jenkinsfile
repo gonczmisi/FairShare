@@ -1,14 +1,24 @@
 pipeline {
-    agent none
     stages {
-        stage('SCM Checkout') {
-            git 'https://github.com/gonczmisi/FairShare'
-        }
         stage('Build') {
-            sh 'mvn install -Dmaven.test.skip=true -f back-end/fairshare/pom.xml'
+            steps {
+                sh 'mvn -B -DskipTests -f back-end/fairshare/pom.xml clean package'
+            }
         }
         stage('Test') {
-            sh 'mvn test -f back-end/fairshare/pom.xml'
+            steps {
+                sh 'mvn test -f back-end/fairshare/pom.xml'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
         }
     }
 }
