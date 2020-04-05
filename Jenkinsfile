@@ -1,6 +1,11 @@
 pipeline {
     agent none
     stages {
+        stage('SCM checkout') {
+            steps {
+                git 'https://github.com/gonczmisi/FairShare'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean package -DskipTests --batch-mode --file back-end/fairshare/pom.xml'
