@@ -27,9 +27,15 @@ With FairShare, you can
 
 ## About branching
 
-The project uses two separate branches:
+The project uses two permanent branches:
 
 + __dev__: development branch
 + __master__: release branch (always stable)
 
 We merge to the master branch often, with pull requests to make sure everybody approves the release.
+
+## About CI
+
+The project uses Mr. Jenkins as a solution for Continous Integration. If you demurely knock on the door at http://137.117.229.78:8080, I'm sure he will welcome you.
+
+With the help of Jenkins, the projects tests and builds are running at least once every day (let's call it nightly build), and also on every single commit.
