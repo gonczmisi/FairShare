@@ -118,6 +118,25 @@ public class User {
     private Set<Receipt> receipts;
     
     /**
+     * Evaluates if two User instances are equal.
+     */
+    @Override
+    public boolean equals(Object other) {
+        User user = (User)other;
+        if (this.username == user.username)
+            return true;
+        return false;
+    }
+
+    /**
+     * Returns the hash value of the entity.
+     */
+    @Override
+    public int hashCode() {
+        return username.hashCode() * emailAddress.hashCode();
+    }
+
+    /**
      * Returns the id of the user.
      * @return The id of the user.
      */
