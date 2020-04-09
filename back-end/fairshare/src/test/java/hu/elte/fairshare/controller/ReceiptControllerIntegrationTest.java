@@ -1,6 +1,7 @@
 package hu.elte.fairshare.controller;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -69,5 +70,15 @@ public class ReceiptControllerIntegrationTest {
         result = receiptController.get(receipt.getId()).getBody();
 
         assertNull(result);
+    }
+
+    /**
+     * Retrieves all receipt entities.
+     */
+    @Test
+    public void retrieveAllReceipts_Succesfully() {
+        Iterable<Receipt> result = receiptController.getAll().getBody();
+
+        assertNotNull(result);
     }
 }

@@ -157,7 +157,7 @@ public class UserController {
      */
     @PutMapping("/users/email/{email}")
     public ResponseEntity<User> putEmail(@RequestBody User user, @PathVariable String email) {
-        Optional<User> optionalUser = userRepository.findByEmailAddress(email);
+        Optional<User> optionalUser = userRepository.findByEmailAddress(user.getEmailAddress());
         if (optionalUser.isPresent()) {
             user.setEmailAddress(email);
             return ResponseEntity.ok(userRepository.save(user));

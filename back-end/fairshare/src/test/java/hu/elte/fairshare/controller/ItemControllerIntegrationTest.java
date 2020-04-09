@@ -1,5 +1,6 @@
 package hu.elte.fairshare.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -50,8 +51,7 @@ public class ItemControllerIntegrationTest {
      * Tests POST, GET, PUT and DELETE.
      */
     @Test
-    public void existingItem_ModifiedAndRetrievedAndDeletedSuccesfully()
-    {
+    public void existingItem_ModifiedAndRetrievedAndDeletedSuccesfully() {
         Item item = new Item();
         item.setName("SOMETHING");
         item.setPrice(100);
@@ -73,5 +73,15 @@ public class ItemControllerIntegrationTest {
         result = itemController.get(item.getId()).getBody();
 
         assertNull(result);
+    }
+
+    /**
+     * Gets all items, and checks if its succesful.
+     */
+    @Test
+    public void retrieveAllItems_Succesfully() {
+        Iterable<Item> result = itemController.getAll().getBody();
+
+        assertNotNull(result);
     }
 }
