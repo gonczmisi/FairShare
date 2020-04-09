@@ -138,34 +138,4 @@ public class UserRepositoryIntegrationTest {
         
         assertFalse(result.isPresent());
     }
-
-    /**
-     * This test checks if the created User entity has the appropiate values,
-     * and also deletes the item.
-     * @throws Exception
-     */
-    @Test
-    public void newUser_ValuesAreRightAndDeleteSuccesfulByUserRole() throws Exception {
-        User user = new User();
-        user.setUsername("test_username");
-        user.setPassword("test_password");
-        user.setEmailAddress("test_mail@domain.ext");
-        user.setUserRole(UserRole.TEST);
-        
-        
-        userRepository.save(user);
-        Optional<List<User>> result = userRepository.findByUserRole(UserRole.TEST);
-        
-        assertTrue(result.isPresent());
-        assertNotNull(result.get());
-        assertEquals("test_username", result.get().get(0).getUsername());
-        assertEquals("test_password", result.get().get(0).getPassword());
-        assertEquals("test_mail@domain.ext", result.get().get(0).getEmailAddress());
-        assertEquals(UserRole.TEST, result.get().get(0).getUserRole());
-
-        userRepository.delete(user);
-        result = userRepository.findByUserRole(UserRole.TEST);
-        
-        assertFalse(result.isPresent());
-    }
 }
