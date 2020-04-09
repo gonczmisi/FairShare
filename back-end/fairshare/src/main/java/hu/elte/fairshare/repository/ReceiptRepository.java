@@ -1,6 +1,9 @@
 package hu.elte.fairshare.repository;
 
 import hu.elte.fairshare.entities.Receipt;
+
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -11,4 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ReceiptRepository extends CrudRepository<Receipt, Long> {
     
+    Optional<Receipt> findByName(String name);
 }

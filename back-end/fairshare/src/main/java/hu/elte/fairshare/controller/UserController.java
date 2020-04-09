@@ -188,7 +188,7 @@ public class UserController {
      * @return The deleted user instance.
      */
     @DeleteMapping("/users/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity<User> delete(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);

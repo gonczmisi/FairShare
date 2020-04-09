@@ -84,6 +84,41 @@ public class Receipt {
     @ManyToMany(mappedBy = "receipts")
     @JsonIgnore
     private Set<Item> items;
+
+    /**
+     * Evaluates if two receipts are equal.
+     */
+    @Override
+    public boolean equals(Object other) {
+        Receipt receipt = (Receipt)other;
+        if (receipt.id == this.id)
+            return true;
+        return false;
+    }
+
+    /**
+     * Returns the hash of the entity.
+     */
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    /**
+     * Returns the id of the receipt.
+     * @return The id of the receipt.
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
+     * Returns the name of the receipt.
+     * @return The name of the receipt.
+     */
+    public String getName() {
+        return this.name;
+    }
     
     /**
      * The setter for name field.
