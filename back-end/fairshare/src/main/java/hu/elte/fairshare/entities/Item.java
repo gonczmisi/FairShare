@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -34,7 +35,7 @@ import org.hibernate.annotations.UpdateTimestamp;
     schema = "public")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(doNotUseGetters = true)
 public class Item {
     
     /**
@@ -74,7 +75,8 @@ public class Item {
         name = "name",
         nullable = false,
         length = 50)
-    private String name;
+    @Getter
+    String name;
     
     /**
      * The price of the item.
@@ -106,10 +108,53 @@ public class Item {
     private Set<Receipt> receipts;
     
     /**
+     * Returns the name of the item.
+     * @return The name of the item.
+     */
+    public String getName()
+    {
+        return this.name;
+    }
+
+    /**
+     * Returns the price of the item.
+     * @return The price of the item.
+     */
+    public int getPrice()
+    {
+        return this.price;
+    }
+
+    /**
+     * Returns the currency type of the item.
+     * @return The currency type of the item.
+     */
+    public Currency getCurrencyType()
+    {
+        return this.currencyType;
+    }
+
+    /**
      * The setter for name field.
      * @param name The new name of the item.
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Sets the price of the item.
+     * @param price The new price of the item.
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    /**
+     * Sets the currency type of the item.
+     * @param currency The new currency type of the item.
+     */
+    public void setCurrencyType(Currency currency) {
+        this.currencyType = currency;
     }
 }
