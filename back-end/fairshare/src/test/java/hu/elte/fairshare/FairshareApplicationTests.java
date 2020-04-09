@@ -3,10 +3,11 @@ package hu.elte.fairshare;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = FairShareApplication.class)
+@SpringBootTest
 class FairshareApplicationTests {
-    
-    @Test
-    void contextLoads() {
-    }
+
+	@Test
+	void contextLoads() {
+	}
+
 }
