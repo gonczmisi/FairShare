@@ -2,13 +2,10 @@ package hu.elte.fairshare.entities;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import hu.elte.fairshare.FairShareApplication;
 import hu.elte.fairshare.utils.Currency;
 
 /**
@@ -16,12 +13,14 @@ import hu.elte.fairshare.utils.Currency;
  * @author sajtizsolt
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = FairShareApplication.class)
+@SpringBootTest
 public class ItemUnitTest {
 
+    /**
+     * Tests the basic getters and setters.
+     */
     @Test
-    public void newItem_GettersAndSettersAreRight()
-    {
+    public void newItem_GettersAndSettersAreRight() {
         Item item = new Item();
         item.setName("ITEM");
         item.setPrice(10000);
@@ -32,9 +31,11 @@ public class ItemUnitTest {
         assertEquals(Currency.USD, item.getCurrencyType());
     }
 
+    /**
+     * Tests the equals and hashCode methods.
+     */
     @Test
-    public void newItems_EqualsAndHashCodeAreRight()
-    {
+    public void newItems_EqualsAndHashCodeAreRight() {
         Item item1 = new Item();
         item1.setName("ITEM");
         item1.setPrice(10000);

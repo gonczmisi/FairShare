@@ -108,11 +108,38 @@ public class Item {
     private Set<Receipt> receipts;
     
     /**
+     * Evaluates if two item are equal.
+     */
+    @Override
+    public boolean equals(Object other) {
+        Item item = (Item)other;
+        
+        if (this.getId() == item.getId())
+            return true;
+        return false;
+    }
+
+    /**
+     * Returns the hash value of the entity.
+     */
+    @Override
+    public int hashCode() {
+        return name.hashCode() * price.hashCode() *currencyType.hashCode();
+    }
+
+    /**
+     * Returns the id of the item.
+     * @return The id of the item.
+     */
+    public Long getId() {
+        return this.id;
+    }
+
+    /**
      * Returns the name of the item.
      * @return The name of the item.
      */
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
@@ -120,8 +147,7 @@ public class Item {
      * Returns the price of the item.
      * @return The price of the item.
      */
-    public int getPrice()
-    {
+    public int getPrice() {
         return this.price;
     }
 
@@ -129,8 +155,7 @@ public class Item {
      * Returns the currency type of the item.
      * @return The currency type of the item.
      */
-    public Currency getCurrencyType()
-    {
+    public Currency getCurrencyType() {
         return this.currencyType;
     }
 

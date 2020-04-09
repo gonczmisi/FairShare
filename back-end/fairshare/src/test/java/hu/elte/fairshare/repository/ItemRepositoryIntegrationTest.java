@@ -1,9 +1,7 @@
 package hu.elte.fairshare.repository;
 
-import hu.elte.fairshare.FairShareApplication;
 import hu.elte.fairshare.entities.Item;
 import hu.elte.fairshare.utils.Currency;
-
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author sajtizsolt
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = FairShareApplication.class)
+@SpringBootTest
 public class ItemRepositoryIntegrationTest {
     
     /**
@@ -36,8 +34,7 @@ public class ItemRepositoryIntegrationTest {
      * @throws Exception
      */
     @Test
-    public void newItem_SavedSuccesfullyAndDeleteSuccesful() throws Exception
-    {
+    public void newItem_SavedSuccesfullyAndDeleteSuccesful() throws Exception {
         Item item = new Item();
         item.setName("test_item");
         item.setPrice(200);
@@ -63,8 +60,7 @@ public class ItemRepositoryIntegrationTest {
      * @throws Exception
      */
     @Test
-    public void newItem_ValuesAreRightAndDeleteSuccesful() throws Exception
-    {
+    public void newItem_ValuesAreRightAndDeleteSuccesful() throws Exception {
         Item item = new Item();
         item.setName("test_item_values");
         item.setPrice(400);
