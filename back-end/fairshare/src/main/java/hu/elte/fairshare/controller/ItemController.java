@@ -89,7 +89,7 @@ public class ItemController {
      * @return The deleted item instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity<Item> delete(@PathVariable Long id) {
         Optional<Item> optionalItem = itemRepository.findById(id);
         if (optionalItem.isPresent()) {
             itemRepository.deleteById(id);

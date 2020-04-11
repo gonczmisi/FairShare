@@ -20,5 +20,26 @@ import org.springframework.web.context.annotation.RequestScope;
 @AllArgsConstructor
 public class AuthenticatedUser {
     
+    /**
+     * The user instance which is getting authenticated.
+     */
     private User user;
+
+    /**
+     * Returns the user instance.
+     * @return The user instance.
+     */
+    public User getUser()
+    {
+        return this.user;
+    }
+
+    /**
+     * Sets the user instance.
+     * @param user The new user.
+     */
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
 }

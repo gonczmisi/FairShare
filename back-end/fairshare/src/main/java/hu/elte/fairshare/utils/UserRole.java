@@ -15,5 +15,8 @@ public enum UserRole {
     GUEST,
     
     // The role of the average users
-    USER
+    USER,
+
+    // THIS ROLE IS FOR TESTING ONLY
+    TEST
 }

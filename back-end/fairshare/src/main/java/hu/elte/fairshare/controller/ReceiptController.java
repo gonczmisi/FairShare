@@ -89,7 +89,7 @@ public class ReceiptController {
      * @return The deleted receipt instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity<Receipt> delete(@PathVariable Long id) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {
             receiptRepository.deleteById(id);

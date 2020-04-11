@@ -38,3 +38,10 @@ buildNumber.properties
 
 ## NetBeans ##
 nbactions.xml
+
+## VS code ##
+.settings
+.vscode
+.classpath
+.factorypath
+.project
