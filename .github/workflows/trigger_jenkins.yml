@@ -1,0 +1,15 @@
+name: trigger jenkins job
+on: [push]
+jobs:
+
+  build:
+    name: Build
+    runs-on: linux
+    steps:
+    - name: trigger single Job
+      uses: gonczmisi/FairShare@dev
+      with:
+        url: "http://137.117.229.78:8080/"
+        user: "zkw6bo"
+        token: "alma"
+        job: "fairshare-pipeline-dev"
