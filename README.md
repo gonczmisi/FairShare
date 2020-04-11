@@ -1,4 +1,4 @@
-# FairShare
+# FairShare.
 
 Welcome to our project repository!
 
