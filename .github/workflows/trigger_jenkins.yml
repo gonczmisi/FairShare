@@ -7,9 +7,9 @@ jobs:
     runs-on: linux
     steps:
     - name: trigger single Job
-      uses: gonczmisi/FairShare@dev
+      uses: gonczmisi/FairShare@master
       with:
         url: "http://137.117.229.78:8080/"
         user: "zkw6bo"
-        token: "alma"
-        job: "fairshare-pipeline-dev"
+        token: "11c6c982a7c0ed98ffa635318e3e170989"
+        job: "fairshare-pipeline-master"
