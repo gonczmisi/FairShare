@@ -15,5 +15,8 @@ Credentials:
 + Host name/adress: 137.117.229.78
 + Port: 5432
 + Maintain database: FairShareDB
-+ Username: pt-admin
-+ Password: For the password, connect the administrators.
++ For further credentials, connect us!
+
+## Files in this directory
+
+You will find some SQL files in this directory. These files are for testing. If the database data is incorrect, the data driven unit and integration tests should fail. Before running the tests, please check if the database data is correct!
