@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
  * 
  * @author sajtizsolt
  */
+@CrossOrigin
 @RestController
-@RequestMapping("/users")
+@RequestMapping
 public class UserController {
     
     /**
@@ -33,10 +36,17 @@ public class UserController {
     private UserRepository userRepository;
     
     /**
+     * The password encoder, necessary to secure the password
+     * that the users give.
+     */
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+    
+    /**
      * The getAll method returns all of the data from the table.
      * @return All data from the users table.
      */
-    @GetMapping("")
+    @GetMapping("/users")
     public ResponseEntity<Iterable<User>> getAll() {
         return ResponseEntity.ok(userRepository.findAll());
     }
@@ -46,8 +56,8 @@ public class UserController {
      * @param id The id of the user.
      * @return The user with the given id.
      */
-    @GetMapping("/id/{id}")
-    public ResponseEntity<User> get(@PathVariable Long id) {
+    @GetMapping("/users/id/{id}")
+    public ResponseEntity<User> getById(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -60,8 +70,8 @@ public class UserController {
      * @param userName The username of the user.
      * @return The user with the given username.
      */
-    @GetMapping("/username/{username}")
-    public ResponseEntity<User> get(@PathVariable String username) {
+    @GetMapping("/users/username/{username}")
+    public ResponseEntity<User> getByUsername(@PathVariable String username) {
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -74,7 +84,7 @@ public class UserController {
      * @param userName The username of the user.
      * @return The user with the given username.
      */
-    @GetMapping("/email/{email}")
+    @GetMapping("/users/email/{email}")
     public ResponseEntity<User> getByEmail(@PathVariable String email) {
         Optional<User> user = userRepository.findByEmailAddress(email);
         if (user.isPresent()) {
@@ -88,7 +98,7 @@ public class UserController {
      * @param role  The role of the users.
      * @return The users with the given role.
      */
-    @GetMapping("/role/{role}")
+    @GetMapping("/users/role/{role}")
     public ResponseEntity<List<User>> getByRole(@PathVariable UserRole role) {
         Optional<List<User>> users = userRepository.findByUserRole(role);
         if (users.isPresent()) {
@@ -102,10 +112,23 @@ public class UserController {
      * @param user The user we want to add to the table.
      * @return The new user instance.
      */
-    @PostMapping("")
+    @PostMapping("/register")
     public ResponseEntity<User> post(@RequestBody User user) {
-        User newUser = userRepository.save(user);
-        return ResponseEntity.ok(newUser);
+        Optional<User> oUser = userRepository.findByUsername(user.getUsername());
+        
+        //Check if there is a user with the username already
+        if (oUser.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }
+        
+        //Check if there is a user with the email address already
+        oUser = userRepository.findByEmailAddress(user.getEmailAddress());
+        if (oUser.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }
+        
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return ResponseEntity.ok(userRepository.save(user));
     }
     
     /**
@@ -115,9 +138,9 @@ public class UserController {
      * @param userName The new username for the user.
      * @return The updated user instance.
      */
-    @PutMapping("/username/{username}")
-    public ResponseEntity<User> put(@RequestBody User user, @PathVariable String userName) {
-        Optional<User> optionalUser = userRepository.findByUsername(userName);
+    @PutMapping("/users/username/{username}")
+    public ResponseEntity<User> putUsername(@RequestBody User user, @PathVariable String userName) {
+        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
         if (optionalUser.isPresent()) {
             user.setUsername(userName);
             return ResponseEntity.ok(userRepository.save(user));
@@ -132,9 +155,9 @@ public class UserController {
      * @param email  The new email address for the user.
      * @return The updated user instance.
      */
-    @PutMapping("/email/{email}")
+    @PutMapping("/users/email/{email}")
     public ResponseEntity<User> putEmail(@RequestBody User user, @PathVariable String email) {
-        Optional<User> optionalUser = userRepository.findByEmailAddress(email);
+        Optional<User> optionalUser = userRepository.findByEmailAddress(user.getEmailAddress());
         if (optionalUser.isPresent()) {
             user.setEmailAddress(email);
             return ResponseEntity.ok(userRepository.save(user));
@@ -149,7 +172,7 @@ public class UserController {
      * @param role  The new role for the user.
      * @return The updated user instance.
      */
-    @PutMapping("/role/{role}")
+    @PutMapping("/users/role/{role}")
     public ResponseEntity<User> putRole(@RequestBody User user, @PathVariable UserRole role) {
         Optional<User> optionalUser = userRepository.findById(user.getId());
         if (optionalUser.isPresent()) {
@@ -164,11 +187,26 @@ public class UserController {
      * @param id The id of the user.
      * @return The deleted user instance.
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    @DeleteMapping("/users/id/{id}")
+    public ResponseEntity<User> delete(@PathVariable Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             userRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    /**
+     * The delete method deletes a user from the table given by id.
+     * @param id The id of the user.
+     * @return The deleted user instance.
+     */
+    @DeleteMapping("/users/username/{username}")
+    public ResponseEntity<User> delete(@PathVariable String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            userRepository.deleteById(optionalUser.get().getId());
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();

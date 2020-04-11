@@ -5,6 +5,7 @@ import hu.elte.fairshare.repository.ReceiptRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 
  * @author sajtizsolt
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/receipts")
 public class ReceiptController {
@@ -87,7 +89,7 @@ public class ReceiptController {
      * @return The deleted receipt instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
+    public ResponseEntity<Receipt> delete(@PathVariable Long id) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {
             receiptRepository.deleteById(id);

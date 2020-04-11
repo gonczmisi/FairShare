@@ -118,10 +118,98 @@ public class User {
     private Set<Receipt> receipts;
     
     /**
+     * Evaluates if two User instances are equal.
+     */
+    @Override
+    public boolean equals(Object other) {
+        User user = (User)other;
+        if (this.username == user.username)
+            return true;
+        return false;
+    }
+
+    /**
+     * Returns the hash value of the entity.
+     */
+    @Override
+    public int hashCode() {
+        return username.hashCode() * emailAddress.hashCode();
+    }
+
+    /**
+     * Returns the id of the user.
+     * @return The id of the user.
+     */
+    public Long getId()
+    {
+        return this.id;
+    }
+
+    /**
+     * Returns the username of the user.
+     * @return The username of the user.
+     */
+    public String getUsername()
+    {
+        return this.username;
+    }
+    
+    /**
+     * Returns the password of the user.
+     * @return The password of the user.
+     */
+    public String getPassword()
+    {
+        return this.password;
+    }
+
+    /**
+     * Returns the email address of the user.
+     * @return The email address of the user.
+     */
+    public String getEmailAddress()
+    {
+        return this.emailAddress;
+    }
+
+    /**
+     * Returns the role of the user.
+     * @return The role of the user.
+     */
+    public UserRole getUserRole()
+    {
+        return this.userRole;
+    }
+
+    /**
      * The setter for username field.
      * @param username The new username of the user.
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * Sets the user's password.
+     * @param password The new password of the user.
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * Sets the user's email address.
+     * @param email The new email address of the user.
+     */
+    public void setEmailAddress(String email) {
+        this.emailAddress = email;
+    }
+
+    /**
+     * Sets the user's role.
+     * @param userRole The new role of the user.
+     */
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }
