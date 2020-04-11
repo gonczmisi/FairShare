@@ -32,4 +32,4 @@ The project uses two separate branches:
 + __dev__: development branch
 + __master__: release branch (always stable)
 ,
-We merge to the master branch often, with pull requests to make sure everybody approves the release..
+We merge to the master branch often, with pull requests to make sure everybody approves the release.
