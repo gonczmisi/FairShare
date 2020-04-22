@@ -24,7 +24,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * The User class implements the user of the application.
- * 
+ *
  * @author sajtizsolt
  */
 @Data
@@ -36,7 +36,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class User {
-    
+
     /**
      * The unique id of the user.
      */
@@ -47,7 +47,7 @@ public class User {
         unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     /**
      * The time the record was created.
      */
@@ -57,7 +57,7 @@ public class User {
         updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
     /**
      * The time the record was last updated.
      */
@@ -66,7 +66,7 @@ public class User {
         nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    
+
     /**
      * The username of the user.
      */
@@ -75,16 +75,16 @@ public class User {
         nullable = false,
         length = 50)
     private String username;
-    
+
     /**
      * The encrypted password of the user.
      */
     @Column(
         name = "password",
         nullable = false,
-        length = 256)  
+        length = 256)
     private String password;
-    
+
     /**
      * The unique email address of the user - one registrated user with one
      * email address at a time.
@@ -95,7 +95,7 @@ public class User {
         length = 50,
         unique = true)
     private String emailAddress;
-    
+
     /**
      * The role of the user.
      */
@@ -105,7 +105,7 @@ public class User {
         length = 15)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    
+
     /**
      * The set of receipts attached to the user.
      */
@@ -116,15 +116,17 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     @JsonIgnore
     private Set<Receipt> receipts;
-    
+
     /**
      * Evaluates if two User instances are equal.
      */
     @Override
     public boolean equals(Object other) {
-        User user = (User)other;
-        if (this.username == user.username)
+        User user = (User) other;
+
+        if (this.username == user.username) {
             return true;
+        }
         return false;
     }
 
@@ -140,8 +142,7 @@ public class User {
      * Returns the id of the user.
      * @return The id of the user.
      */
-    public Long getId()
-    {
+    public Long getId() {
         return this.id;
     }
 
@@ -149,17 +150,15 @@ public class User {
      * Returns the username of the user.
      * @return The username of the user.
      */
-    public String getUsername()
-    {
+    public String getUsername() {
         return this.username;
     }
-    
+
     /**
      * Returns the password of the user.
      * @return The password of the user.
      */
-    public String getPassword()
-    {
+    public String getPassword() {
         return this.password;
     }
 
@@ -167,8 +166,7 @@ public class User {
      * Returns the email address of the user.
      * @return The email address of the user.
      */
-    public String getEmailAddress()
-    {
+    public String getEmailAddress() {
         return this.emailAddress;
     }
 
@@ -176,40 +174,39 @@ public class User {
      * Returns the role of the user.
      * @return The role of the user.
      */
-    public UserRole getUserRole()
-    {
+    public UserRole getUserRole() {
         return this.userRole;
     }
 
     /**
      * The setter for username field.
-     * @param username The new username of the user.
+     * @param newUsername The new username of the user.
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String newUsername) {
+        this.username = newUsername;
     }
 
     /**
      * Sets the user's password.
-     * @param password The new password of the user.
+     * @param newPassword The new password of the user.
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String newPassword) {
+        this.password = newPassword;
     }
 
     /**
      * Sets the user's email address.
-     * @param email The new email address of the user.
+     * @param newEmail The new email address of the user.
      */
-    public void setEmailAddress(String email) {
-        this.emailAddress = email;
+    public void setEmailAddress(String newEmail) {
+        this.emailAddress = newEmail;
     }
 
     /**
      * Sets the user's role.
-     * @param userRole The new role of the user.
+     * @param newUserRole The new role of the user.
      */
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setUserRole(UserRole newUserRole) {
+        this.userRole = newUserRole;
     }
 }

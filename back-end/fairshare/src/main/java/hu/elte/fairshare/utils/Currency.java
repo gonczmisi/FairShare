@@ -3,17 +3,23 @@ package hu.elte.fairshare.utils;
 /**
  * The Currency enumerator implements the available currency types in the
  * system.
- * 
+ *
  * @author sajtizsolt
  */
 public enum Currency {
-    
-    // Hungarian forint
+
+    /**
+     * Hungarian forint.
+     */
     HUF,
-    
-    // Euro
+
+    /**
+     * Euro.
+     */
     EUR,
-    
-    // USA dollar
+
+    /**
+     * USA dollar.
+     */
     USD
 }

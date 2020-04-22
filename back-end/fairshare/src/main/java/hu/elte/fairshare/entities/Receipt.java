@@ -19,7 +19,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * The Receipt class implements a receipt of a user (group).
- * 
+ *
  * @author sajtizsolt
  */
 @Data
@@ -31,7 +31,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Receipt {
-    
+
     /**
      * The unique id of the receipt.
      */
@@ -42,7 +42,7 @@ public class Receipt {
         unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     /**
      * The time the record was created.
      */
@@ -52,7 +52,7 @@ public class Receipt {
         updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
     /**
      * The time the record was last updated.
      */
@@ -61,23 +61,23 @@ public class Receipt {
         nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    
+
     /**
-     * 
+     * The name of the receipt.
      */
     @Column(
         name = "name",
         nullable = false,
         length = 50)
     private String name;
-    
+
     /**
      * The set of users attached to the receipt.
      */
     @ManyToMany(mappedBy = "receipts")
     @JsonIgnore
     private Set<User> users;
-    
+
     /**
      * The set of users attached to the receipt.
      */
@@ -90,9 +90,11 @@ public class Receipt {
      */
     @Override
     public boolean equals(Object other) {
-        Receipt receipt = (Receipt)other;
-        if (receipt.id == this.id)
+        Receipt receipt = (Receipt) other;
+
+        if (receipt.id == this.id) {
             return true;
+        }
         return false;
     }
 
@@ -101,7 +103,7 @@ public class Receipt {
      */
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return this.name.hashCode();
     }
 
     /**
@@ -119,12 +121,12 @@ public class Receipt {
     public String getName() {
         return this.name;
     }
-    
+
     /**
      * The setter for name field.
-     * @param name The new name of the receipt.
+     * @param newName The new name of the receipt.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String newName) {
+        this.name = newName;
     }
 }

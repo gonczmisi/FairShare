@@ -16,24 +16,38 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
  * commence(HttpServletRequest, HttpServletResponse, AuthenticationException) method below.
  * This will indicate to the browser its credentials are no longer authorized,
  * causing it to prompt the user to login again.
+ *
  * @author mgoncz
  */
 public class BasicEntryPoint extends BasicAuthenticationEntryPoint {
-    
+
+    /**
+     * Initalizes the entry point.
+     *
+     * @param request The request received.
+     * @param response The response sent.
+     * @param authException The exception occured.
+     * @throws IOException if the communication fails
+     * @throws ServletException if the initalization fails
+     */
     @Override
-    public void commence(final HttpServletRequest request, final HttpServletResponse response, 
-    		final AuthenticationException authException) throws IOException, ServletException {
-    	
+    public void commence(final HttpServletRequest request, final HttpServletResponse response,
+                final AuthenticationException authException) throws IOException, ServletException {
+
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.addHeader("WWW-Authenticate", "Basic realm=" + getRealmName() + "");
-         
+
         PrintWriter writer = response.getWriter();
         writer.println("HTTP Status 401 : " + authException.getMessage());
     }
-     
+
+    /**
+     * Runs after the properties are set.
+     *
+     * @throws Exception if the communication fails
+     */
     @Override
     public void afterPropertiesSet() throws Exception {
-    	
         setRealmName("FairShare");
         super.afterPropertiesSet();
     }

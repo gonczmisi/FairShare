@@ -18,20 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * The ReceiptController class implements a REST controller which can handle
  * get, post, put, delete requests.
- * 
+ *
  * @author sajtizsolt
  */
 @CrossOrigin
 @RestController
 @RequestMapping("/receipts")
 public class ReceiptController {
-    
+
     /**
      * The repository instance of the controller.
      */
     @Autowired
     private ReceiptRepository receiptRepository;
-    
+
     /**
      * The getAll method returns all of the data from the table.
      * @return All data from the receipts table.
@@ -40,32 +40,32 @@ public class ReceiptController {
     public ResponseEntity<Iterable<Receipt>> getAll() {
         return ResponseEntity.ok(receiptRepository.findAll());
     }
-    
+
     /**
      * The get method returns the receipt with the given id.
      * @param id The id of the receipt.
      * @return The receipt with the given id.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<Receipt> get(@PathVariable Long id) {
+    public ResponseEntity<Receipt> get(final @PathVariable Long id) {
         Optional<Receipt> receipt = receiptRepository.findById(id);
         if (receipt.isPresent()) {
             return ResponseEntity.ok(receipt.get());
         }
         return ResponseEntity.notFound().build();
     }
-    
+
     /**
      * The post method puts a new record into the table.
      * @param receipt The receipt we want to add to the table.
      * @return The new receipt instance.
      */
     @PostMapping("")
-    public ResponseEntity<Receipt> post(@RequestBody Receipt receipt) {
+    public ResponseEntity<Receipt> post(final @RequestBody Receipt receipt) {
         Receipt newReceipt = receiptRepository.save(receipt);
         return ResponseEntity.ok(newReceipt);
     }
-    
+
     /**
      * The put method sets the id of the given receipt to the given id.
      * @param receipt The receipt we want to update.
@@ -74,7 +74,7 @@ public class ReceiptController {
      * @return The updated receipt instance.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, @PathVariable Long id, @PathVariable String name) {
+    public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, final @PathVariable Long id, final @PathVariable String name) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {
             receipt.setName(name);
@@ -82,14 +82,14 @@ public class ReceiptController {
         }
         return ResponseEntity.notFound().build();
     }
-    
+
     /**
      * The delete method deletes a receipt from the table given by id.
      * @param id The id of the receipt.
      * @return The deleted receipt instance.
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Receipt> delete(@PathVariable Long id) {
+    public ResponseEntity<Receipt> delete(final @PathVariable Long id) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {
             receiptRepository.deleteById(id);

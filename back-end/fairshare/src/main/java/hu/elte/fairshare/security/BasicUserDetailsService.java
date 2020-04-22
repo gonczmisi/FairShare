@@ -2,7 +2,6 @@ package hu.elte.fairshare.security;
 
 import hu.elte.fairshare.entities.User;
 import hu.elte.fairshare.repository.UserRepository;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -16,18 +15,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * This class implements the UserDetailsService, what is 
+ * This class implements the UserDetailsService, what is
  * responsible for validate credentials from the database
  * what the user give during the authentication.
+ *
  * @author mgoncz
  */
 @Service
 public class BasicUserDetailsService implements UserDetailsService {
 
+    /**
+     * The repository containing the users.
+     */
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired 
+    /**
+     * The currently authenticated user.
+     */
+    @Autowired
     private AuthenticatedUser authenticatedUser;
 
     /**
