@@ -25,7 +25,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * The Item class implements an item on a receipt.
- * 
+ *
  * @author sajtizsolt
  */
 @Data
@@ -37,7 +37,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @AllArgsConstructor
 @EqualsAndHashCode(doNotUseGetters = true)
 public class Item {
-    
+
     /**
      * The unique id of the receipt.
      */
@@ -48,7 +48,7 @@ public class Item {
         unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     /**
      * The time the record was created.
      */
@@ -58,7 +58,7 @@ public class Item {
         updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
     /**
      * The time the record was last updated.
      */
@@ -67,7 +67,7 @@ public class Item {
         nullable = false)
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    
+
     /**
      * The name of the item.
      */
@@ -76,8 +76,8 @@ public class Item {
         nullable = false,
         length = 50)
     @Getter
-    String name;
-    
+    private String name;
+
     /**
      * The price of the item.
      */
@@ -85,7 +85,7 @@ public class Item {
         name = "price",
         nullable = false)
     private Integer price;
-    
+
     /**
      * The active currency of the item.
      */
@@ -95,7 +95,7 @@ public class Item {
         length = 5)
     @Enumerated(EnumType.STRING)
     private Currency currencyType;
-    
+
     /**
      * The set of receipts attached to the item.
      */
@@ -106,16 +106,17 @@ public class Item {
         inverseJoinColumns = @JoinColumn(name = "receipt_id"))
     @JsonIgnore
     private Set<Receipt> receipts;
-    
+
     /**
      * Evaluates if two item are equal.
      */
     @Override
     public boolean equals(Object other) {
-        Item item = (Item)other;
-        
-        if (this.getId() == item.getId())
+        Item item = (Item) other;
+
+        if (this.getId() == item.getId()) {
             return true;
+        }
         return false;
     }
 
@@ -124,7 +125,7 @@ public class Item {
      */
     @Override
     public int hashCode() {
-        return name.hashCode() * price.hashCode() *currencyType.hashCode();
+        return this.name.hashCode() * this.price.hashCode() * this.currencyType.hashCode();
     }
 
     /**
@@ -161,25 +162,25 @@ public class Item {
 
     /**
      * The setter for name field.
-     * @param name The new name of the item.
+     * @param newName The new name of the item.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String newName) {
+        this.name = newName;
     }
 
     /**
      * Sets the price of the item.
-     * @param price The new price of the item.
+     * @param newPrice The new price of the item.
      */
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPrice(int newPrice) {
+        this.price = newPrice;
     }
 
     /**
      * Sets the currency type of the item.
-     * @param currency The new currency type of the item.
+     * @param newCurrency The new currency type of the item.
      */
-    public void setCurrencyType(Currency currency) {
-        this.currencyType = currency;
+    public void setCurrencyType(Currency newCurrency) {
+        this.currencyType = newCurrency;
     }
 }

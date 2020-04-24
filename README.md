@@ -47,3 +47,8 @@ We are trying to merge from the development branch as often as we can, but only 
 ### How the automated builds starting?
 
 If someone commits to the development or to the production branch, the GitHub webhook we have configured will trigger Mr. Jenkins, and he will make sure if the commit (or merge) is right.
+
+## Extra tools
+
+The maven build comes with automated documentation generation and code style checking, both can break the build. For more information, check the backend documentation.
+The artifacts are in the ```target``` folder.
