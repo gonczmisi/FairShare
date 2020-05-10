@@ -5,6 +5,8 @@ import AddReceipts from './AddReceipts';
 import Receipts from './Receipts';
 import AddItems from './AddItems';
 import Items from './Items';
+import Login from './Login';
+import Register from './Register';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/receipts" component={Receipts} />
           <Route path="/add-items" component={AddItems} />
           <Route path="/items" component={Items} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </Switch>
       </div>
     </Router>

@@ -16,7 +16,27 @@ nav{
   width: 30%;
   display: flex;
   justify-content: space-around;
+  align-items: left;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-links2{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
   align-items: right;
   list-style: none;
   text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 }

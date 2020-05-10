@@ -9,7 +9,6 @@ function Nav() {
 
   return (
     <nav>
-        <p>LOGO</p>
         <ul className="nav-links">
             <Link to='/add-receipts' style={navStyle}>
             <li>Add Receipts</li>
@@ -22,6 +21,14 @@ function Nav() {
             </Link>
             <Link to='/items' style={navStyle}>
             <li>Items</li>
+            </Link>
+        </ul>
+        <ul className="nav-links2">
+            <Link to='/login' style={navStyle}>
+                <li>LOGIN</li>
+            </Link>
+            <Link to='/register' style={navStyle}>
+                <li>REGISTER</li>
             </Link>
         </ul>
     </nav>
