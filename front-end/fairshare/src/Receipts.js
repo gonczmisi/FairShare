@@ -1,39 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
 
-function Receipts() {
+const BACKEND_URL = 'http://localhost:8081';
+const BACKEND_VM_URL = 'http://137.117.229.78:8080';
+const RECEIPTS_URL = BACKEND_URL + '/receipts';
+
+export default class Receipts extends React.Component {
   
-  //this fetch will only gonna run when the component mounts
-  useEffect(() => {
-      fetchReceipts();
-  },[]);
-  
-  const [receipts, setItems] = useState([]);
+  state = {
+    receipts: []
+  }
+    
+  /*
+  componentDidMount() {
+    axios.get(RECEIPTS_URL)
+      .then(response => {
+        const receipts = response.data;
+        this.setState({ receipts });
+      })
+  }
+  */
+ 
+  render(){
+    return (
+      <div>
+        
+        <h1>Receipts</h1>
 
-  //fetching data from database
-  const fetchReceipts = async () => {
-      const data = await fetch('137.117.229.78/Receipt');
-      
-      //an other database for experimentation
-      //const data = await fetch('http://jsonplaceholder.typicode.com/users');
+        <table>
+            <thead></thead>
+            <tbody></tbody>
+        </table>
 
-      const receipts = await data.json();
-      console.log(receipts);
-      setItems(receipts);
-  };
-  
-  
-  return (
-    <div>
-      
-      <h1>Receipts</h1>
-
-      {receipts.map(receipt => ( 
-          <p key={receipt.id}>{receipt.name}</p>
-      ))} 
-
-    </div>
-  );
+      </div>
+    );
+  }
 }
-
-export default Receipts;

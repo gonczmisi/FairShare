@@ -1,90 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import axios from 'axios';
+import { Button, FormGroup, FormControl } from "react-bootstrap";
+import { Redirect } from 'react-router-dom';
 
+const BACKEND_URL = 'http://localhost:8081';
+const BACKEND_VM_URL = 'http://137.117.229.78:8080';
+const ITEMS_URL = BACKEND_URL + '/Items';
 
-class AddItems extends React.Component {
+export default function AddItems() {
+    const [id, setId] = useState("");
+    const [created_at, setCreation] = useState("");
+    const [updated_at, setUpdate] = useState("");
+    const [name, setName] =  useState("");
+    const [price, setPrice] =  useState("");
+    const [currency_type, setCurrency] =  useState("");
+    const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          id: 1,
-          created_at: '',
-          updated_at: '',
-          name: '',
-          price: null,
-          currency_type: 'HUF',
-          
-          date: new Date(),
-          options: { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric',  minute: 'numeric'},
-        };
-        
-        this.handleTxtChange = this.handleTxtChange.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleTxtChange(event) {
-      let name = event.target.name;
-      let value = event.target.value;
-      this.setState({[name]: value});
-    }
-
-    handleChange(event) {
-      this.setState({currency_type: event.target.value});
-    }
-
-    handleSubmit(event) {
-      event.preventDefault();
-      this.setState({id: this.state.id+1});
-
-      var tmp_date = this.state.date.toLocaleDateString('en-GB', this.state.options);
-      this.setState({created_at: tmp_date});
-      this.setState({updated_at: tmp_date});
-      this.setState({name: event.target.name});
-      this.setState({price: event.target.price});
-      
-      this.setState({name: ''});
-      this.setState({price: null});
-    }  
-
-    
-    render() {
-        return (
-            <div>
-                <h1>Add Items</h1>
-                <p> Fill out the fields to add an item! </p>
-                <br></br>
-                
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Item name:</label>
-                        <input type="text" className="form-control" placeholder="Item name" name="name" required onChange={this.handleTxtChange}/>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <div className="form-group">
-                        <label>Price:</label>
-                        <input type="number" className="form-control" placeholder="Price" name="price" required onChange={this.handleTxtChange}/>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <div className="form-group">
-                    <label>Currency Type:
-                        <select value={this.state.currency_type} onChange={this.handleChange}>
-                            <option currency_type="HUF">[HUF] Hungarian Forint</option>
-                            <option currency_type="USD">[USD] American Dollar</option>
-                            <option currency_type="EUR">[EUR] Euro</option>
-                        </select>
-                    </label> 
-                    </div>
-                    <br></br>
-                    <br></br>                 
-                                       
-                    <button type="submit" className="btn btn-primary">ADD</button>
-                </form>
-            </div>
+    function handleClick(event) {
+        console.log(
+            id,
+            created_at,
+            updated_at,
+            name,
+            price,
+            currency_type
         );
-    }
- }
+        axios.post(
+            ITEMS_URL,
+            {
+                id: id,
+                created_at: created_at,
+                updated_at: updated_at,
+                name: name,
+                price: price,
+                currency_type: currency_type
+            }
+        )
+            .then(function res(response) {
+                console.log(response);
+                if (response.status === 200) {
+                    alert("Successfully added an item");
+                    setSuccess(true);
+                } else {
+                    alert("Something went wrong!");
+                    console.log("Something went wrong!");
+                    setError(true);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("Something went wrong!");
+                setError(true);
+            });
 
-export default AddItems;
+    }
+
+    if(success){
+        return <Redirect to ="/items" />
+    }
+
+    return (
+        <div className="AddItems">
+            <h1>Add an Item</h1>
+            <br />
+            <br />
+            <FormGroup controlId="name" bsSize="large">
+                <b>Name of the item: </b>
+                    <FormControl
+                    id="inputbox"
+                    autoFocus
+                    type="text"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+            </FormGroup>
+            <br />
+            <FormGroup controlId="Price" bsSize="large">
+                <b>Price of the item: </b>
+                    <FormControl
+                    id="inputbox"
+                    autoFocus
+                    type="number"
+                    value={price}
+                    onChange={e => setPrice(e.target.value)}
+                />
+            </FormGroup>
+            <br />
+            <FormGroup controlId="currency_type" bsSize="large">
+                <b>Currency: </b>
+                    <FormControl
+                    id="selectBox"
+                    as="select"
+                    type="text"
+                    value={currency_type}
+                    onChange={e => setCurrency(e.target.value)}>
+                            <option>HUF</option>
+                            <option>USD</option>
+                            <option>EUR</option>
+                    </FormControl>
+            </FormGroup>
+            <br/>
+            <br/>
+            <Button block bsSize="large" onClick={handleClick} id="button">
+                Add
+            </Button>
+        </div>
+    );
+
+}

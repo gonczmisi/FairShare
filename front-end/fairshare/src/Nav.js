@@ -10,17 +10,17 @@ function Nav() {
   return (
     <nav>
         <ul className="nav-links">
+        <Link to='/receipts' style={navStyle}>
+            <li>Receipts</li>
+            </Link>
             <Link to='/add-receipts' style={navStyle}>
             <li>Add Receipts</li>
             </Link>
-            <Link to='/receipts' style={navStyle}>
-            <li>Receipts</li>
+            <Link to='/items' style={navStyle}>
+            <li>Items</li>
             </Link>
             <Link to='/add-items' style={navStyle}>
             <li>Add Items</li>
-            </Link>
-            <Link to='/items' style={navStyle}>
-            <li>Items</li>
             </Link>
         </ul>
         <ul className="nav-links2">

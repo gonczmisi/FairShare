@@ -1,39 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import axios from 'axios';
 
-function Items() {
+const BACKEND_URL = 'http://localhost:8081';
+const BACKEND_VM_URL = 'http://137.117.229.78:8080';
+const ITEMS_URL = BACKEND_URL + '/items';
 
-  //this fetch will only gonna run when the component mounts
-  useEffect(() => {
-    fetchReceipts();
-  },[]);
+export default class Items extends React.Component {
 
-  const [items, setItems] = useState([]);
+  state = {
+    items: []
+  }
 
-  //fetching data from database
-  const fetchReceipts = async () => {
-     const data = await fetch('137.117.229.78/Item');
-     
-     //an other database for experimentation 
-     //const data = await fetch('http://jsonplaceholder.typicode.com/users');
+  /*
+  componentDidMount() {
+    axios.get(ITEMS_URL)
+      .then(response => {
+        const items = response.data;
+        this.setState({ items });
+      })
+  }
+  */
 
-      const items = await data.json();
-      console.log(items);
-      setItems(items);
-  };
-
-
-  return (
-    <div>
-      
-      <h1>Items</h1>
-
-      {items.map(item => ( 
-          <p key={item.id}>{item.name}</p>
-      ))} 
+  render(){
+    return (
+      <div>
         
-    </div>
-  );
-}
+        <h1>Items</h1>
 
-export default Items;
+        <table>
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+          
+      </div>
+    );
+  }
+}
