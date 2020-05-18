@@ -73,7 +73,7 @@ public class ReceiptController {
      * @param name The new name of the receipt.
      * @return The updated receipt instance.
      */
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{name}")
     public ResponseEntity<Receipt> put(@RequestBody Receipt receipt, final @PathVariable Long id, final @PathVariable String name) {
         Optional<Receipt> optionalReceipt = receiptRepository.findById(id);
         if (optionalReceipt.isPresent()) {

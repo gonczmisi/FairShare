@@ -43,9 +43,12 @@ public class UserController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    /**
+     * The currently authenticated user.
+     */
     @Autowired
     private AuthenticatedUser authenticatedUser;
-    
+
     /**
      * The getAll method returns all of the data from the table.
      * @return All data from the users table.
@@ -215,7 +218,7 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
-    
+
     /**
      * This implements the login method.
      * @return : the authenticated user
