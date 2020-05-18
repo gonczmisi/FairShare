@@ -7,7 +7,6 @@ import { Redirect } from 'react-router-dom';
 
 const BACKEND_URL = 'http://localhost:8080';
 const BACKEND_VM_URL = 'http://137.117.229.78:8080';
-const USER_URL = BACKEND_URL + '/user';
 const LOGIN_URL = BACKEND_URL + '/login';
 
 export default function Login() {
@@ -15,7 +14,7 @@ export default function Login() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [success, setSuccess] = useState(null);
+    const [success, setSuccess] = useState(false);
 
     function validateForm() {
         return password.length > 0 && username.length > 0;
@@ -57,8 +56,11 @@ export default function Login() {
 
     return (
         <div className="Login">
+            <h1>Login</h1>
+            <br/>
+            <br/>
             <FormGroup controlId="username" bsSize="large">
-                Username
+                <b>Username: </b>
                     <FormControl
                     autoFocus
                     type="username"
@@ -66,14 +68,17 @@ export default function Login() {
                     onChange={e => setUsername(e.target.value)}
                 />
             </FormGroup>
+            <br/>
             <FormGroup controlId="password" bsSize="large">
-                Password
+                <b>Password: </b>
                     <FormControl
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     type="password"
                 />
             </FormGroup>
+            <br/>
+            <br/>
             <Button block bsSize="large" disabled={!validateForm()} onClick={handleSubmit} >
                 Login
                 </Button>
