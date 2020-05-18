@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import { Button, FormGroup, FormControl } from "react-bootstrap";
+import { Redirect } from 'react-router-dom';
 
 const BACKEND_URL = 'http://localhost:8080';
 const BACKEND_VM_URL = 'http://137.117.229.78:8080';
@@ -32,6 +33,7 @@ export default function Register() {
             .then(function res(response) {
                 console.log(response);
                 if (response.status === 200) {
+                    alert("Successful registration! \nFeel free to login!");
                     setSuccess(true);
                 } else {
                     alert("Wrong credentials!");
@@ -46,6 +48,10 @@ export default function Register() {
                 setError(true);
             });
 
+    }
+
+    if(success){
+        return <Redirect to ="/login" />
     }
 
     return (
