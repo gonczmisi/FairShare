@@ -97,7 +97,11 @@ Kattintsunk a fenti sávon az Add Items gombra, ha további itemet szeretnénk h
 
   Kattintsunk az Add felirattal jelölt gombra. 
   
+  Ha a bevitt adatok megfelelnek az elvárásoknak, sikeresen hozzáadtunk egy újitemet.
+  
   ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/SuccAddItem.png?raw=true "Successfulyy Added Item")
+  
+  Ha a bevitt adatokkal valami nem stimmel, hibát jelez a felület.
   
   ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/WrongItemAdd.png?raw=true "Item was not added")
 
