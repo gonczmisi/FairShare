@@ -55,8 +55,21 @@ export default class Receipts extends React.Component {
           <img src={require('./fsr.png')} />
 
           <table>
-            <thead></thead>
-            <tbody></tbody>
+            <thead>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Date of creation</td>
+                <td>Date of update</td>
+            </thead>
+            <tbody>
+              {this.state.receipts.map(receipt => ( 
+                  <tr key={receipt.id}> <td> {receipt.id} </td>
+                                        <td> {receipt.name} </td>
+                                        <td> {receipt.createdAt} </td>
+                                        <td> {receipt.updatedAt} </td>
+                  </tr>
+              ))}
+            </tbody>
           </table>
 
         </div>

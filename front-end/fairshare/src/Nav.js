@@ -61,6 +61,7 @@ function Nav() {
                 }
                 {authTokens &&
                     <Button
+                        id="button2"
                         variant='text'
                         color='primary'
                         onClick={singOut}

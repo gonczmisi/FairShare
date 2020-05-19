@@ -45,7 +45,6 @@ export default class Items extends React.Component {
     }
   }
 
-
   render() {
     if (this.context) {
       return (
@@ -54,8 +53,25 @@ export default class Items extends React.Component {
           <img src={require('./FSI.png')} />
 
           <table>
-            <thead></thead>
-            <tbody></tbody>
+            <thead>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Currency</td>
+                <td>Date of creation</td>
+                <td>Date of update</td>
+            </thead>
+            <tbody>
+              {this.state.items.map(item => ( 
+                  <tr key={item.id}> <td> {item.id} </td>
+                                     <td> {item.name} </td>
+                                     <td> {item.price} </td>
+                                     <td> {item.currencyType} </td>
+                                     <td> {item.createdAt} </td>
+                                     <td> {item.updatedAt} </td>
+                  </tr>
+              ))}
+            </tbody>
           </table>
 
         </div>
