@@ -15,6 +15,10 @@ export default function Register() {
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
 
+    function validateForm() {
+        return password.length > 0 && username.length > 0 && email.length > 0;
+    }
+
     function handleClick(event) {
         console.log(
             username,
@@ -88,7 +92,7 @@ export default function Register() {
             </FormGroup>
             <br/>
             <br/>
-            <Button block bsSize="large" onClick={handleClick} >
+            <Button block bsSize="large" onClick={handleClick} disabled={!validateForm()}>
                 Sing up
             </Button>
         </div>

@@ -5,7 +5,7 @@ import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { Redirect } from 'react-router-dom';
 import { useAuth } from './context/Auth';
 
-const BACKEND_URL = 'http://localhost:8081';
+const BACKEND_URL = 'http://localhost:8080';
 const BACKEND_VM_URL = 'http://137.117.229.78:8080';
 const ITEMS_URL = BACKEND_URL + '/items';
 

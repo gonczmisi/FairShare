@@ -42,11 +42,13 @@ export default function Login() {
                     setAuthTokens(response.data);
                     setSuccess(true);
                 } else {
+                    alert("Wrong credentials! Try again!");
                     setSuccess(false);
                 }
             })
             .catch(error => {
                 console.log(error);
+                alert("Wrong credentials! Try again!");
                 setSuccess(false);
             });
     };
