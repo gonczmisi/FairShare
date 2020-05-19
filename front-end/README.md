@@ -14,11 +14,13 @@ Látogassuk meg a http://localhost:3000/oldalt.
 
 A felső menüben kattintsunk a Login gombra. 
 
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/Login.png?raw=true "Login")
+  
 Kattintsunk a username felirattal jelölt mezőbe. 
 
 Vigyük be a mezőbe például a username szöveget. 
 
-Ekkor bemásolódik a kiszeltunde a username változó értékébe. 
+Ekkor bemásolódik a username a username változó értékébe. 
 
 Kattintsunk a password felirattal jelölt mezőbe. 
 
@@ -37,13 +39,19 @@ Ekkor meghívódik az AuthService osztály login(string, string) metódusa.
   Amennyiben megtalálható az adott felhasználónév-jelszó párossal tarkított adat a felhasználók között, jelzi ezt (vagy ennek ellenkezőjét) a frontend számára, amely kiértékeli a választ. 
 
     Amennyiben helyesek voltak az adatok, a felhasználót bejelentkezetté teszi és továbbítja a http://localhost:3000/receipts címre. 
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/register.png?raw=true "Register")
 
     Amennyiben hibásak az adatok, jelzi ezt a felhasználó számára. 
+    
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/Wrc.png?raw=true "wrong login credentials alert")
 
 A felhasználóval kapcsolatban álló nyugták megjelennek, tudjuk őket szerkeszteni. 
-
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/ListReceipt.png?raw=true "Receipt Listing")
 Kattintsunk a fenti sávon az Add Receipt gombra, ha további nyugtát szeretnénk létrehozni.
- 
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/AddReceipt.png?raw=true "Add Receipt")
+  
   Kattintsunk a Name of the receipt felirat melletti mezőbe. 
 
   Vigyük be a mezőbe például a PéntekEstiBuli szöveget. 
@@ -57,10 +65,17 @@ Kattintsunk a fenti sávon az Add Receipt gombra, ha további nyugtát szeretné
   Ekkor bemásolódik a 10000 a price változó értékébe. 
 
   Kattintsunk az Add felirattal jelölt gombra. 
+ 
+ ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/SuccAddReceipt.png?raw=true "Added Receipt")
 
 Kattintsunk a fenti sávon az Items gombra, hogy megjelenjenek a nyugtákhoz adható itemek.
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/ItemList.png?raw=true "Item listing")
 
 Kattintsunk a fenti sávon az Add Items gombra, ha további itemet szeretnénk hozzáadni. 
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/AddItem.png?raw=true "Add Items")
+
 
   Kattintsunk a Name of the item felirat melletti mezőbe. 
 
@@ -81,7 +96,10 @@ Kattintsunk a fenti sávon az Add Items gombra, ha további itemet szeretnénk h
   Ekkor bemásolódik a kiválasztott valuta a currency_type változó értékébe. 
 
   Kattintsunk az Add felirattal jelölt gombra. 
-
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/SuccAddItem.png?raw=true "Successfulyy Added Item")
+  
+  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/WrongItemAdd.png?raw=true "Item was not added")
 
  
 
