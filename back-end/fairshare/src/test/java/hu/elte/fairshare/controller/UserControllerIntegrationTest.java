@@ -17,7 +17,7 @@ import hu.elte.fairshare.utils.UserRole;
 
 /**
  * This class is used to test the REST functions of the User type.
- * 
+ *
  * @author sajtizsolt
  */
 @RunWith(SpringRunner.class)
@@ -135,13 +135,12 @@ public class UserControllerIntegrationTest {
 
         // By email address
         user = userController.getByEmail("by@email.address").getBody();
-        System.out.println(user.getUsername());
         userController.putEmail(user, "UPDATED@email.address");
         user = userController.getByEmail("UPDATED@email.address").getBody();
-        assertEquals("user_by_username", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
         userController.putEmail(user, "by@email.address");
         user = userController.getByEmail("by@email.address").getBody();
-        assertEquals("user_by_username", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
 
         // By role
         user = userController.getByUsername("user_by_username").getBody();

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import { useAuth } from './context/Auth';
+import { Redirect } from 'react-router-dom';
 
 function Nav() {
     const { setAuthTokens, authTokens } = useAuth();
@@ -13,6 +14,10 @@ function Nav() {
 
     const singOut = () => {
         setAuthTokens();
+    }
+
+    if(!authTokens){
+        return <Redirect to="/login" />
     }
 
     return (
