@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import { useAuth } from './context/Auth';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BACKEND_URL = 'http://localhost:8081';
 const BACKEND_VM_URL = 'http://137.117.229.78:8080';
@@ -82,7 +83,10 @@ export default function Login() {
             <br/>
             <Button block bsSize="large" disabled={!validateForm()} onClick={handleSubmit} >
                 Login
-                </Button>
+            </Button>
+            <br/>
+            <br/>
+            <Link to='/register'>Not a member? Register now!.</Link>
         </div>
     );
 }
