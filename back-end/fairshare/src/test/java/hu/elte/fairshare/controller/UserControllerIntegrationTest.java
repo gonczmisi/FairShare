@@ -17,7 +17,7 @@ import hu.elte.fairshare.utils.UserRole;
 
 /**
  * This class is used to test the REST functions of the User type.
- * 
+ *
  * @author sajtizsolt
  */
 @RunWith(SpringRunner.class)
@@ -100,8 +100,9 @@ public class UserControllerIntegrationTest {
         List<User> userList;
 
         // By id
-        user = userController.getById(new Long(0)).getBody();
-        assertEquals("user_by_id", user.getUsername());
+        Long id = userController.getByUsername("user_by_username").getBody().getId();
+        user = userController.getById(id).getBody();
+        assertEquals("user_by_username", user.getUsername());
 
         // By username
         user = userController.getByUsername("user_by_username").getBody();
@@ -109,11 +110,11 @@ public class UserControllerIntegrationTest {
 
         // By email address
         user = userController.getByEmail("by@email.address").getBody();
-        assertEquals("user_by_email_address", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
 
         // By role
         userList = userController.getByRole(UserRole.TEST).getBody();
-        assertEquals(4, userList.size());
+        assertEquals(3, userList.size());
     }
 
     /**
@@ -136,18 +137,18 @@ public class UserControllerIntegrationTest {
         user = userController.getByEmail("by@email.address").getBody();
         userController.putEmail(user, "UPDATED@email.address");
         user = userController.getByEmail("UPDATED@email.address").getBody();
-        assertEquals("user_by_email_address", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
         userController.putEmail(user, "by@email.address");
         user = userController.getByEmail("by@email.address").getBody();
-        assertEquals("user_by_email_address", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
 
         // By role
-        user = userController.getByUsername("user_by_role").getBody();
+        user = userController.getByUsername("user_by_username").getBody();
         userController.putRole(user, UserRole.GUEST);
-        user = userController.getByUsername("user_by_role").getBody();
+        user = userController.getByUsername("user_by_username").getBody();
         assertEquals(UserRole.GUEST, user.getUserRole());
         userController.putRole(user, UserRole.TEST);
-        user = userController.getByUsername("user_by_role").getBody();
+        user = userController.getByUsername("user_by_username").getBody();
         assertEquals(UserRole.TEST, user.getUserRole());
     }
 }

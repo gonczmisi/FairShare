@@ -2,6 +2,7 @@ package hu.elte.fairshare.controller;
 
 import hu.elte.fairshare.entities.User;
 import hu.elte.fairshare.repository.UserRepository;
+import hu.elte.fairshare.security.AuthenticatedUser;
 import hu.elte.fairshare.utils.UserRole;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,12 @@ public class UserController {
      */
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    /**
+     * The currently authenticated user.
+     */
+    @Autowired
+    private AuthenticatedUser authenticatedUser;
 
     /**
      * The getAll method returns all of the data from the table.
@@ -210,5 +217,14 @@ public class UserController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    /**
+     * This implements the login method.
+     * @return : the authenticated user
+     */
+    @PostMapping("/login")
+    public ResponseEntity login() {
+        return ResponseEntity.ok(authenticatedUser.getUser());
     }
 }

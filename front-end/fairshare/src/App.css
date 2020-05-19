@@ -1,0 +1,81 @@
+.App {
+  text-align: center;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 10vh;
+  background-color: rgb(33,144,197);
+  color: white;
+  
+}
+
+.nav-links{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: left;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-links2{
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: right;
+  list-style: none;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+#inputbox {
+  border-radius: 10px;
+  border: 2px solid rgb(0, 54, 153);
+  padding: 8px; 
+  width: 200px;
+  height: 8px;
+  margin-left: 13px;    
+}
+
+#selectBox{
+  margin-left: 13px;
+  width:200px;
+  height:27px;
+  border-radius:9px;
+  border:2px solid rgb(0, 54, 153);
+  outline:none;
+}
+
+#button {
+  background-color: rgb(0, 54, 153);
+  color: white;
+  width:60px;
+  height:35px;
+  margin:auto;
+  border-radius:10px;
+  text-align: center;
+}
+
+#button2 {
+  background-color: rgb(33, 144, 197);
+  color: white;
+  width:100px;
+  height:35px;
+  margin:auto;
+  border-radius:10px;
+  text-align: center;
+}
