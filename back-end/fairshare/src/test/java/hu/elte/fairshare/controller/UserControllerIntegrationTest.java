@@ -110,11 +110,11 @@ public class UserControllerIntegrationTest {
 
         // By email address
         user = userController.getByEmail("by@email.address").getBody();
-        assertEquals("user_by_username", user.getUsername());
+        assertEquals("user_by_email", user.getUsername());
 
         // By role
         userList = userController.getByRole(UserRole.TEST).getBody();
-        assertEquals(2, userList.size());
+        assertEquals(3, userList.size());
     }
 
     /**
