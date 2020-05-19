@@ -45,7 +45,7 @@ Ekkor meghívódik az AuthService osztály login(string, string) metódusa.
     
   ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/Wrc.png?raw=true "wrong login credentials alert")
 
-A felhasználóval kapcsolatban álló nyugták megjelennek, tudjuk őket szerkeszteni. 
+Az elérhető nyugták kilistázódnak. 
   
   ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/ListReceipt.png?raw=true "Receipt Listing")
 Kattintsunk a fenti sávon az Add Receipt gombra, ha további nyugtát szeretnénk létrehozni.
