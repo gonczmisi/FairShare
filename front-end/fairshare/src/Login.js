@@ -56,12 +56,13 @@ export default function Login() {
 
     return (
         <div className="Login">
-            <h1>Login</h1>
+            <img src={require('./fslogin.png')} />
             <br/>
             <br/>
             <FormGroup controlId="username" bsSize="large">
                 <b>Username: </b>
                     <FormControl
+					id="inputbox2"
                     autoFocus
                     type="username"
                     value={username}

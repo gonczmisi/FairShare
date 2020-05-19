@@ -63,7 +63,7 @@ export default function AddItems() {
 
     return (
         <div className="AddItems">
-            <h1>Add an Item</h1>
+            <img src={require('./fsia.png')} />
             <br />
             <br />
             <FormGroup controlId="name" bsSize="large">

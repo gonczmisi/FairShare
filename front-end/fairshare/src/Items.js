@@ -11,22 +11,22 @@ export default class Items extends React.Component {
   state = {
     items: []
   }
-
-  /*
+  
+  
   componentDidMount() {
-    axios.get(ITEMS_URL)
+    axios.get('BACKEND_URL + “/items')
       .then(response => {
         const items = response.data;
         this.setState({ items });
       })
   }
-  */
+  
 
   render(){
     return (
       <div>
         
-        <h1>Items</h1>
+       <img src={require('./FSI.png')} />
 
         <table>
             <thead></thead>

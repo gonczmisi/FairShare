@@ -55,7 +55,7 @@ export default function Register() {
 
     return (
         <div className="Register">
-            <h1>Sing up</h1>
+            <img src={require('./fsregister.png')} />
             <br />
             <br />
             <FormGroup controlId="username" bsSize="large">

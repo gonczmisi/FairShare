@@ -59,7 +59,7 @@ export default function AddItems() {
 
     return (
         <div className="AddReceipts">
-            <h1>Add a Receipt</h1>
+            <img src={require('./fsra.png')} />
             <br />
             <br />
             <FormGroup controlId="name" bsSize="large">

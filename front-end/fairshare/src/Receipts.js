@@ -26,7 +26,7 @@ export default class Receipts extends React.Component {
     return (
       <div>
         
-        <h1>Receipts</h1>
+        <img src={require('./fsr.png')} />
 
         <table>
             <thead></thead>
