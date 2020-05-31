@@ -14,7 +14,6 @@ Látogassuk meg a http://localhost:3000/oldalt.
 
 A felső menüben kattintsunk a Login gombra. 
 
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/Login.png?raw=true "Login")
   
 Kattintsunk a username felirattal jelölt mezőbe. 
 
@@ -39,18 +38,16 @@ Ekkor meghívódik az AuthService osztály login(string, string) metódusa.
   Amennyiben megtalálható az adott felhasználónév-jelszó párossal tarkított adat a felhasználók között, jelzi ezt (vagy ennek ellenkezőjét) a frontend számára, amely kiértékeli a választ. 
 
     Amennyiben helyesek voltak az adatok, a felhasználót bejelentkezetté teszi és továbbítja a http://localhost:3000/receipts címre. 
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/register.png?raw=true "Register")
 
     Amennyiben hibásak az adatok, jelzi ezt a felhasználó számára. 
     
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/Wrc.png?raw=true "wrong login credentials alert")
 
 Az elérhető nyugták kilistázódnak. 
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/ListReceipt.png?raw=true "Receipt Listing")
+  
 Kattintsunk a fenti sávon az Add Receipt gombra, ha további nyugtát szeretnénk létrehozni.
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/AddReceipt.png?raw=true "Add Receipt")
+  
   
   Kattintsunk a Name of the receipt felirat melletti mezőbe. 
 
@@ -66,15 +63,15 @@ Kattintsunk a fenti sávon az Add Receipt gombra, ha további nyugtát szeretné
 
   Kattintsunk az Add felirattal jelölt gombra. 
  
- ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/SuccAddReceipt.png?raw=true "Added Receipt")
+ 
 
 Kattintsunk a fenti sávon az Items gombra, hogy megjelenjenek a nyugtákhoz adható itemek.
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/ItemList.png?raw=true "Item listing")
+  
 
 Kattintsunk a fenti sávon az Add Items gombra, ha további itemet szeretnénk hozzáadni. 
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/AddItem.png?raw=true "Add Items")
+ 
 
 
   Kattintsunk a Name of the item felirat melletti mezőbe. 
@@ -99,11 +96,11 @@ Kattintsunk a fenti sávon az Add Items gombra, ha további itemet szeretnénk h
   
   Ha a bevitt adatok megfelelnek az elvárásoknak, sikeresen hozzáadtunk egy újitemet.
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/SuccAddItem.png?raw=true "Successfulyy Added Item")
+
   
   Ha a bevitt adatokkal valami nem stimmel, hibát jelez a felület.
   
-  ![Login](https://github.com/gonczmisi/FairShare/blob/dev/front-end/fairshare/src/WrongItemAdd.png?raw=true "Item was not added")
+
 
  
 
@@ -119,13 +116,13 @@ Töltsük le a forrásállományokat innen, a Github-ról. Ezt két módon is me
 
 Jobb oldalon felül kattintsunk a Download, a letöltés után pedig tömörítsük ki. 
 
-Ha a számítógépünkra van Git telepítve, akkor parancssorban futtassuk a git clone https://github.com/gonczmisi/FairShare parancsot. 
+Ha a számítógépünkra van Git telepítve, akkor parancssorban futtassuk a git clone https://github.com/magyardor/alkfejl/hurryworry parancsot. 
 
-A létrejött FairShare mappát nyissuk meg NetBeans segítségével. 
+A létrejött hurryworry mappát nyissuk meg NetBeans segítségével. 
 
 Clean and Build után futassuk (Run). 
 
-A Fairshare mappában található Front-end almappát nyissuk meg Visual Studio Code segítségével és nyissunk terminált. 
+A hurryworry mappában található Front-end almappát nyissuk meg Visual Studio Code segítségével és nyissunk terminált. 
 
 npm install 
 
